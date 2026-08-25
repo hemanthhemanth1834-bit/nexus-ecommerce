@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="nexus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5c7cfa"/>
+      <stop offset="100%" stop-color="#748ffc"/>
+    </linearGradient>
+  </defs>
+  <polygon points="50,5 93.3,27.5 93.3,72.5 50,95 6.7,72.5 6.7,27.5" fill="url(#nexus-grad)"/>
+  <text x="50" y="58" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="26" font-weight="bold">N</text>
+</svg>
