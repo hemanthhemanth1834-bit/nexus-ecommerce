@@ -1,5 +1,9 @@
 # NEXUS — Premium Full-Stack E-Commerce Platform
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/hemanthhemanth1834-bit/nexus-ecommerce)
+
+> **Live Demo:** Deploy with one click using the button above, or follow the manual instructions below.
+
 A production-ready, premium e-commerce product catalog built with React, TypeScript, Express, Prisma, and SQLite (PostgreSQL-ready). Features a futuristic UI with 3D effects, animations, glassmorphism, dark/light mode, and a full admin dashboard.
 
 ## Features
@@ -207,24 +211,41 @@ Switch to PostgreSQL for production:
 
 ## Production Deployment
 
-### Frontend (Vercel/Netlify)
-```bash
-cd client
-npm run build
-# Deploy the dist/ folder
-```
+### One-Click Deploy (Render)
 
-### Backend (Render/Railway)
+Click the **Deploy to Render** button at the top of this README. Render will:
+1. Clone the repo
+2. Install dependencies, generate Prisma client, run migrations, seed data
+3. Build the React frontend
+4. Start the Express server serving both API and frontend
+
+The `render.yaml` in the repo root configures everything automatically.
+
+### Manual Deploy (Render)
+
+1. Create a free account at [render.com](https://render.com)
+2. Click **New Web Service** → Connect your GitHub repo
+3. Render auto-detects `render.yaml` — confirm settings and deploy
+4. Your live URL will be: `https://nexus-ecommerce.onrender.com`
+
+### Manual Deploy (Other Platforms)
+
 ```bash
-cd server
-npm run build
-# Deploy with start: node dist/index.js
-# Run migrations: npx prisma migrate deploy
+# Build everything
+npm run build        # builds client
+cd server && npm run build  # builds server
+
+# Start the server (serves both API + frontend in production)
+cd server && NODE_ENV=production node dist/index.js
 ```
 
 ### Database
-- Use a managed PostgreSQL provider (Neon, Supabase, Railway)
-- Update `DATABASE_URL` environment variable
+- SQLite works out of the box for demos (data resets on redeploy on free tier)
+- For persistent data, switch to PostgreSQL:
+  1. Use a managed provider (Neon, Supabase, Railway)
+  2. Update `DATABASE_URL` in Render environment variables
+  3. Change provider in `prisma/schema.prisma` from `sqlite` to `postgresql`
+  4. Run `npx prisma migrate deploy`
 
 ## License
 
