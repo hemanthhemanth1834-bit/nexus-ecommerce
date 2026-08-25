@@ -1,6 +1,7 @@
 {
   "name": "ecommerce-server",
   "version": "1.0.0",
+  "type": "module",
   "description": "E-commerce REST API server",
   "main": "dist/index.js",
   "scripts": {

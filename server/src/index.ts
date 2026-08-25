@@ -7,6 +7,8 @@ import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { errorHandler } from "./middleware/errorHandler.js";
 import authRoutes from "./routes/auth.js";
@@ -17,6 +19,9 @@ import orderRoutes from "./routes/orders.js";
 import reviewRoutes from "./routes/reviews.js";
 import wishlistRoutes from "./routes/wishlist.js";
 import adminRoutes from "./routes/admin.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -53,7 +58,7 @@ function rateLimit(req: express.Request, res: express.Response, next: express.Ne
 }
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+  origin: process.env.NODE_ENV === "production" ? true : (process.env.CORS_ORIGIN || "http://localhost:5173"),
   credentials: true,
 }));
 app.use(helmet());
@@ -75,6 +80,16 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/admin", adminRoutes);
+
+const isProduction = process.env.NODE_ENV === "production";
+
+if (isProduction) {
+  const clientDist = path.resolve(__dirname, "../../client/dist");
+  app.use(express.static(clientDist));
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(clientDist, "index.html"));
+  });
+}
 
 app.use(errorHandler);
 
