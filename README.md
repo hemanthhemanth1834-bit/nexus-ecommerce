@@ -2,7 +2,7 @@
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/hemanthhemanth1834-bit/nexus-ecommerce)
 
-> **Live Demo:** Deploy with one click using the button above, or follow the manual instructions below.
+> **Live Demo:** https://ecommerce-orpin-xi.vercel.app
 
 A production-ready, premium e-commerce product catalog built with React, TypeScript, Express, Prisma, and SQLite (PostgreSQL-ready). Features a futuristic UI with 3D effects, animations, glassmorphism, dark/light mode, and a full admin dashboard.
 
